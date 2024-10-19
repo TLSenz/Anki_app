@@ -3,5 +3,17 @@ def system_start():
 
 
 
-def user_login():
+
+def get_card():
     pass
+
+
+def cal_score():
+    pass
+
+def return_card():
+    pass
+
+
+
+
