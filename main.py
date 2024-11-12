@@ -1,14 +1,13 @@
-import sqlite3 
+
 import functions
-import userinterface
-
-conn = sqlite3.connect('Sqlite3.db') 
+from functions import aktualsieren
 
 
-cursor = conn.cursor()
+def main():
+    aktualsieren()
+    print(f"Hallo")
+    print(f"Heute hascmt du {len(functions.checkcards())}")
 
-cursor.execute("SELECT question FROM flashcards WHERE id = 1")
-cards = cursor.fetchall()
 
 
-print("Flights: ", cards)
+
