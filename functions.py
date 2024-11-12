@@ -33,8 +33,23 @@ def get_cardarray(cardnumber):
     card = cursor.fetchone()
     return card
 
-def cal_score():
-    pass
+def cal_score(previous_interval_days, response_quality):
+    multipliers = {
+            'easy': 2.5,
+            'good': 2.0,
+            'difficult': 1.5,
+            'didnt_know': 0.5
+        }
+    if response_quality == 'didnt_know':
+        return 1
+
+    if previous_interval_days < 1:
+        previous_interval_days = 1
+
+    next_interval = int(previous_interval_days * multipliers.get(response_quality, 1.5))
+
+    return next_interval
+
 
 def return_card(DaysRevesion,Date,):
     conn = sqlite3.connect('Anki.db')
@@ -43,3 +58,9 @@ def return_card(DaysRevesion,Date,):
     cursor.execute(sql_returncard, (DaysRevesion,Date))
 
 
+def checkcards():
+    conn = sqlite3.connect('Anki.db')
+    cursor = conn.cursor()
+    sql_skript = """SELECT DaysRevision FROM Flashcards WHERE ID <= 0"""
+    cards = cursor.fetchall()
+    return cards
