@@ -64,3 +64,8 @@ def checkcards():
     sql_skript = """SELECT DaysRevision FROM Flashcards WHERE ID <= 0"""
     cards = cursor.fetchall()
     return cards
+
+def get_previous_intervall(card_ID):
+    conn = sqlite3.connect('Anki.db')
+    cursor = conn.cursor()
+    sql = """SELECT DaysRevion"""
